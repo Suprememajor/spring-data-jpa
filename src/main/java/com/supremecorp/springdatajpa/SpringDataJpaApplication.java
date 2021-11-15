@@ -1,7 +1,9 @@
 package com.supremecorp.springdatajpa;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SpringDataJpaApplication {
@@ -10,4 +12,16 @@ public class SpringDataJpaApplication {
         SpringApplication.run(SpringDataJpaApplication.class, args);
     }
 
+    @Bean
+    CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
+        return args -> {
+            Student maria = new Student(
+                    18,
+                    "mariajones@gmailom",
+                    "Maria",
+                    "Jones"
+            );
+            studentRepository.save(maria);
+        };
+    }
 }

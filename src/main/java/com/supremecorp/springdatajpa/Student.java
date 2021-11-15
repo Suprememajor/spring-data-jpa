@@ -1,6 +1,9 @@
 package com.supremecorp.springdatajpa;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -13,7 +16,6 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "Student")
 @Table(
         name = "student",
@@ -41,4 +43,11 @@ public class Student {
     private String firstName;
     @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
     private String lastName;
+
+    public Student(Integer age, String email, String firstName, String lastName) {
+        this.age = age;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
