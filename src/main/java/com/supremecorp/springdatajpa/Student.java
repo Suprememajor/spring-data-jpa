@@ -9,12 +9,17 @@ import static javax.persistence.GenerationType.SEQUENCE;
 /**
  * Created by suprememajor on the 11/15/21
  */
-@Entity(name = "Student")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "Student")
+@Table(
+        name = "student",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        })
 public class Student {
     @Id
     @SequenceGenerator(
@@ -30,7 +35,7 @@ public class Student {
     private Long id;
     @Column(name = "age", nullable = false)
     private Integer age;
-    @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique = true)
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT")
     private String email;
     @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
