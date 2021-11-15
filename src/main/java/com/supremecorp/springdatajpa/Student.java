@@ -2,10 +2,7 @@ package com.supremecorp.springdatajpa;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -29,9 +26,14 @@ public class Student {
             strategy = SEQUENCE,
             generator = "student_sequence"
     )
+    @Column(name = "id", updatable = false)
     private Long id;
+    @Column(name = "age", nullable = false)
     private Integer age;
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique = true)
     private String email;
+    @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
+    @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
     private String lastName;
 }
